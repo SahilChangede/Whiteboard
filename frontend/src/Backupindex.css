@@ -1,0 +1,454 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+
+html {
+  font-size: 12px;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 200px;
+  background-color: #1a202c;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Logo Section */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  gap: 16px;
+}
+
+.nav-link {
+  padding: 12px;
+  font-size: 1.8rem;
+  font-weight: 500;
+  background-color: #1a202c;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white !important;
+  text-align: center;
+  
+}
+
+.nav-link:hover {
+  background-color: #1a202c;
+  transform: scale(1.05);
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Ensures spacing between buttons */
+}
+
+/* Main Content */
+.main-content {
+  width: 75%;
+  padding: 24px;
+}
+
+/* Top Navigation */
+.top-nav {
+  display: flex;
+  justify-content: flex-start; /* Move buttons to the left */
+  align-items: center; /* Keep buttons aligned properly */
+  gap: 20px; /* Adjust spacing */
+  font-size: 20px;
+  font-weight: 500;
+  border-bottom: 1px solid white;
+  padding-bottom: 8px;
+  padding-left: 20px; /* Slightly move everything left */
+}
+
+
+/* Ensure the text color remains white */
+.top-nav a {
+  text-decoration: none;
+  color: black !important; /* Force white color */
+  transition: color 0.3s ease-in-out;
+}
+
+.top-nav a:hover {
+  color: #f0f0f0 !important; /* Light gray on hover for subtle effect */
+}
+
+/* Activity Button */
+.activity-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.activity-btn {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.activity-btn:hover {
+  color: #333;
+}
+
+
+/* Contact Us Button */
+.contact-btn {
+  background: none;
+  border: none;
+  color: white !important;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 15px;
+  display: flex;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+  margin-left: auto; /* Pushes it to the right */
+  text-decoration: none;
+}
+
+.contact-btn:hover {
+  color: #f0f0f0 !important;
+}
+
+/* Dropdown Menu */
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  min-width: 100px;
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #2d3748;
+}
+
+
+/* Content Area */
+.content-area {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  height: 80%;
+  background-color: hsl(210, 62%, 56%);
+}
+
+/* ================= Profile Page Styling ================= */
+/* Profile Container */
+.profile-container {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Profile Header */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Profile Picture */
+.profile-picture {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #3182ce;
+  cursor: pointer;
+}
+
+.profile-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: #3182ce;
+  background-color: #e3f2fd;
+}
+
+.profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Camera Icon Overlay */
+.profile-picture .camera-icon {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.profile-picture .camera-icon img {
+  width: 20px;
+  height: 20px;
+}
+
+
+
+/* Hidden File Input */
+.image-upload {
+  display: none;
+}
+
+/* Upload Button */
+.upload-btn {
+  display: block;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #3182ce;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.upload-btn:hover {
+  background-color: #1e4e8c;
+}
+
+/* Input Fields */
+.input-group {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.input-group label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Save Button */
+.save-btn {
+  margin-top: 15px;
+  padding: 12px;
+  width: 100%;
+  background-color: #3182ce;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background-color: #1e4e8c;
+}
+
+/* ====================================================== */
+
+/* Existing Login, Signup, Forgot Password Styles */
+.login-main, .signup-main, .forgot-password-main {
+  display: flex;
+}
+
+.login-left, .signup-left, .forgot-password-left {
+  flex-grow: 1;
+  height: 100vh;
+  background-color: #E9E9E9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-left img, .signup-left img, .forgot-password-left img {
+  width: 400px;
+}
+
+.login-right, .signup-right, .forgot-password-right {
+  height: 100vh;
+  flex-grow: 1;
+}
+
+.login-right-container, .signup-right-container, .forgot-password-container {
+  height: 100%;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-right form, .signup-right form, .forgot-password-center form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-logo, .signup-logo, .forgot-password-logo {
+  align-self: center;
+  padding-top: 100px;
+}
+
+.login-center, .signup-center, .forgot-password-center {
+  margin: auto 0;
+  text-align: center;
+}
+
+.login-logo img, .signup-logo img, .forgot-password-logo img {
+  width: 100px;
+}
+
+.login-center h2, .signup-center h2, .forgot-password-center h2 {
+  font-size: 3.5rem;
+}
+
+.login-center p, .signup-center p {
+  font-weight: 400;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+form input[type='email'],
+form input[type='password'],
+form input[type='text'] {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 0px;
+  border-bottom: 1px solid black;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.pass-input-div {
+  position: relative;
+}
+
+.pass-input-div svg {
+  font-size: 20px;
+  position: absolute;
+  right: 10px;
+  bottom: 35px;
+  cursor: pointer;
+  outline: none;
+}
+
+form button[type='button'], form button[type='submit'] {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 30px;
+  font-weight: 600;
+}
+
+.login-center-options, .signup-center-options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.remember-div {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+
+.remember-div label {
+  font-size: 1.3rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.forgot-pass-link {
+  text-decoration: none;
+  font-size: 1.3rem;
+}
+
+.forgot-pass-link:hover {
+  text-decoration: underline;
+}
+
+.login-center-buttons, .signup-center-buttons, .forgot-password-center-buttons {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.login-bottom-p, .signup-bottom-p, .forgot-password-bottom-p {
+  text-align: center;
+  font-size: 1.5rem;
+  padding-bottom: 40px;
+}

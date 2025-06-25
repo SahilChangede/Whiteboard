@@ -1,0 +1,45 @@
+/* App.css */
+html, body, #root, .app-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  /* ... other global styles ... */
+}
+
+/* Base styling for the main content area */
+.page-content {
+  margin-top: 4rem; /* Adjust this to exactly match your fixed header's height */
+  /* Or padding-top: 4rem; depending on your preference and overall structure */
+  display: flex;
+  flex-direction: column;
+  /* ... other layout styles ... */
+}
+
+/* LandingPage.css (specific to LandingPage component) */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4rem; /* Ensure this is consistent */
+  z-index: 50;
+  /* ... other header styles ... */
+}
+
+.hero-section {
+  /* No margin-top needed here if .page-content correctly offsets the header */
+  padding: 5rem 0 6rem;
+  /* ... */
+}
+
+/* Other sections in LandingPage.css */
+.overview-section,
+.download-section,
+.support-section,
+.faq-section {
+  padding: 6rem 0; /* Consistent internal padding */
+  margin-bottom: 2rem; /* Spacing between sections if needed */
+  /* ... */
+}

@@ -1,0 +1,737 @@
+/* LandingContent.css - Full Page Camera Management Redesign */
+
+/* Root Variables for Modern Theme */
+:root {
+  --primary-brand-color: #2563eb; /* Modern blue */
+  --primary-brand-hover: #1d4ed8;
+  --accent-color: #2563eb;
+  --accent-hover: #1d4ed8;
+  --secondary-color: #64748b; /* Gray for secondary actions */
+  --secondary-hover: #475569;
+  --danger-color: #ef4444;
+  --danger-hover: #dc2626;
+  --success-color: #10b981;
+  --bg-page: #f3f6fa;
+  --bg-card: #fff;
+  --border-light: #e5e7eb;
+  --shadow-light: rgba(30, 41, 59, 0.06);
+  --shadow-medium: rgba(30, 41, 59, 0.12);
+  --font-family-primary: 'Poppins', sans-serif;
+  --border-radius-lg: 1.25rem;
+  --border-radius-md: 0.75rem;
+  --border-radius-sm: 0.375rem;
+}
+
+/* Global Body and HTML Styles for Full Page Layout */
+html, body, #root { /* Ensure #root also takes full height */
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling on the entire page */
+  font-family: var(--font-family-primary);
+  background-color: var(--bg-page);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+/* Main Container for Camera Management */
+.camera-management-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Takes full viewport height */
+  padding: 2rem; /* Add padding around the content */
+  box-sizing: border-box; /* Include padding in height calculation */
+  background-color: var(--bg-page); /* Match body background */
+  overflow-y: auto; /* Allow scrolling within this container if content overflows */
+  position: relative; /* For z-index stacking context if needed */
+}
+
+/* Header for Camera Management Section */
+.camera-management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-light);
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 1rem; /* Space between title and button */
+}
+
+.camera-management-header .section-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-brand-color);
+  margin: 0;
+}
+
+/* Add New Camera Button */
+.new-camera-button {
+  background-color: var(--primary-brand-color);
+  color: white;
+  padding: 1.2rem 2.25rem;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px var(--shadow-medium);
+}
+
+.new-camera-button:hover {
+  background-color: var(--primary-brand-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px var(--shadow-medium);
+}
+
+.new-camera-button .button-icon {
+  font-size: 1.1em;
+}
+
+/* Search Bar and Auto-Connect Toggle */
+.search-bar-and-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2.25rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  font-size: 1.5rem;
+}
+
+.search-bar {
+  position: relative;
+  flex-grow: 1;
+  max-width: 600px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1.125rem 1.5rem 1.125rem 4.5rem;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-md);
+  font-size: 1.5rem;
+  color: var(--text-dark);
+  background-color: var(--bg-card);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-brand-color);
+  box-shadow: 0 0 0 3px rgba(106, 138, 255, 0.2);
+}
+
+.search-icon {
+  position: absolute;
+  left: 2.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  font-size: 1.65rem;
+  pointer-events: none;
+}
+
+.auto-connect-toggle {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.auto-connect-toggle label {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.auto-connect-toggle input[type="checkbox"] {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.auto-connect-toggle input[type="checkbox"]::before {
+  content: '';
+  position: absolute;
+  top: 0.15rem;
+  left: 0.15rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.auto-connect-toggle input[type="checkbox"]:checked {
+  background-color: var(--success-color);
+}
+
+.auto-connect-toggle input[type="checkbox"]:checked::before {
+  transform: translateX(1rem);
+}
+
+/* Linked Devices Section */
+.linked-devices-section {
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 4px 20px var(--shadow-light);
+  padding: 1.5rem;
+  flex-grow: 1; /* Allows it to take remaining vertical space */
+  display: flex;
+  flex-direction: column;
+}
+
+.loading-spinner {
+  border: 4px solid var(--border-light);
+  border-top: 4px solid var(--primary-brand-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 2rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.no-devices-message {
+  text-align: center;
+  color: var(--text-light);
+  font-style: italic;
+  padding: 2rem;
+}
+
+.device-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.device-item {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 6px 32px var(--shadow-light);
+  padding: 2.2rem 2.5rem 2.2rem 2.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.25rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+  position: relative;
+}
+
+@media (min-width: 900px) {
+  .device-item {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+.device-item:not(:last-child) {
+  margin-bottom: 2.5rem;
+}
+
+.device-item:hover {
+  box-shadow: 0 12px 40px var(--shadow-medium);
+  transform: translateY(-2px) scale(1.01);
+}
+
+.device-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.3rem;
+}
+
+.device-icon {
+  font-size: 2.2rem;
+  color: var(--primary-brand-color);
+  margin-top: 0.2rem;
+}
+
+.device-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 1.15rem;
+}
+
+.device-name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary-brand-color);
+  margin-bottom: 0.1rem;
+}
+
+.camera-id-display {
+  font-size: 1.05rem;
+  color: #64748b;
+  font-family: monospace;
+  margin-bottom: 0.2rem;
+}
+
+.camera-status {
+  font-size: 1.05rem;
+  color: var(--success-color);
+  font-weight: 500;
+}
+
+.camera-status.offline {
+  color: var(--danger-color);
+}
+
+.camera-last-connected {
+  font-size: 0.98rem;
+  color: #64748b;
+}
+
+.device-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 1.1rem;
+  align-items: center;
+}
+
+.connect-button {
+  background: var(--primary-brand-color);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.7rem 2.1rem;
+  box-shadow: 0 2px 8px var(--shadow-light);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.connect-button:hover:not(:disabled) {
+  background: var(--primary-brand-hover);
+  transform: translateY(-1px) scale(1.03);
+}
+
+.connect-button:disabled {
+  background: var(--border-light);
+  color: #b0b7c3;
+  cursor: not-allowed;
+}
+
+.disconnect-button {
+  background: var(--secondary-color);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.7rem 2.1rem;
+  box-shadow: 0 2px 8px var(--shadow-light);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.disconnect-button:hover {
+  background: var(--secondary-hover);
+  transform: translateY(-1px) scale(1.03);
+}
+
+.view-details-button {
+  display: none !important;
+}
+
+/* Loading Indicator for Buttons */
+.loading-indicator {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Modals */
+.add-camera-form-modal-overlay, .link-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Darker overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.add-camera-form-modal-content, .link-dialog-content {
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius-lg);
+  padding: 2.5rem; /* More generous padding */
+  box-shadow: 0 10px 30px var(--shadow-medium);
+  width: 90%;
+  max-width: 500px; /* Max width for modals */
+  animation: slideUp 0.3s ease-out forwards;
+  position: relative; /* Needed for z-index of floating label */
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-title, .dialog-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.modal-description, .dialog-message {
+  font-size: 1rem;
+  color: var(--text-medium);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.manual-entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Floating Label Specific Styles */
+.input-field-container {
+  position: relative;
+  margin-bottom: 1.5rem; /* Adjust margin for spacing */
+}
+
+.input-field-container label {
+  position: absolute;
+  left: 1rem;
+  top: 0.9rem; /* Initial position for label */
+  font-size: 1rem;
+  color: var(--text-light);
+  pointer-events: none; /* Make label unclickable */
+  transition: all 0.3s ease;
+  background-color: var(--bg-page); /* ensure it overlays the input properly */
+  padding: 0 0.25rem; /* Padding for the "floating" state */
+  z-index: 1; /* Ensure label is above input when floating */
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  color: var(--text-dark);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--bg-page);
+  position: relative; /* Ensure input is correctly positioned */
+  z-index: 0; /* Input below label when label is "floating" */
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary-brand-color);
+  box-shadow: 0 0 0 3px rgba(106, 138, 255, 0.2);
+}
+
+/* Label when input is focused or has content */
+.input-field-container.focused label,
+.input-field-container label.active { /* 'active' class from JS state */
+  top: -0.7rem; /* Move label up */
+  left: 0.8rem; /* Slight left shift */
+  font-size: 0.8rem; /* Smaller font size */
+  color: var(--primary-brand-color); /* Highlight color */
+  background-color: var(--bg-card); /* Background to 'cut out' the border */
+  padding: 0 0.25rem;
+}
+
+/* Specific style for input when focused/active to prevent label overlap */
+.input-field-container.focused .input-field,
+.input-field-container label.active + .input-field {
+    border-color: var(--primary-brand-color); /* Keep border color consistent */
+}
+
+.error-message {
+  color: var(--danger-color);
+  font-size: 0.85rem;
+  text-align: center;
+  margin-top: 0.8rem;
+}
+
+.modal-actions, .dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.cancel-link-btn, .cancel-confirm-btn {
+  background-color: transparent;
+  color: var(--text-medium);
+  border: 1px solid var(--border-light);
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-link-btn:hover, .cancel-confirm-btn:hover {
+  background-color: var(--bg-page);
+  color: var(--text-dark);
+}
+
+.link-camera-submit-btn, .confirm-link-btn {
+  background-color: var(--primary-brand-color);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px var(--shadow-medium);
+}
+
+.link-camera-submit-btn:hover:not(:disabled), .confirm-link-btn:hover:not(:disabled) {
+  background-color: var(--primary-brand-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px var(--shadow-medium);
+}
+
+.link-camera-submit-btn:disabled, .confirm-link-btn:disabled {
+  background-color: var(--border-light);
+  color: var(--text-light);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .camera-management-container {
+    padding: 1rem;
+  }
+
+  .camera-management-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .camera-management-header .section-title {
+    font-size: 1.6rem;
+  }
+
+  .new-camera-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .search-bar-and-toggle {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .search-bar {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .auto-connect-toggle {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .device-list {
+    grid-template-columns: 1fr;
+  }
+
+  .device-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .device-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .connect-button, .disconnect-button {
+    flex-grow: 1;
+    text-align: center;
+    justify-content: center;
+    padding: 0.8rem;
+  }
+
+  .add-camera-form-modal-content, .link-dialog-content {
+    padding: 1.5rem;
+    max-width: 95%;
+  }
+
+  .modal-title, .dialog-title {
+    font-size: 1.5rem;
+  }
+
+  .modal-actions, .dialog-footer {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .cancel-link-btn, .cancel-confirm-btn, .link-camera-submit-btn, .confirm-link-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Further refinements for accessibility and subtle effects */
+button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--primary-brand-color);
+  outline-offset: 2px;
+}
+
+/* Error message container for userId errors */
+.error-message-container {
+  margin: 20px 0;
+  padding: 0 20px;
+}
+
+.error-message {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: slideInDown 0.3s ease-out;
+}
+
+.error-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.retry-button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.retry-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Success Popup Styles */
+.success-popup-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+.success-popup-content {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.18), 0 1.5px 8px rgba(0,0,0,0.08);
+  padding: 2.2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  min-width: 320px;
+  max-width: 90vw;
+  border: 2px solid #10b981;
+  animation: slideUp 0.3s ease;
+}
+.success-icon {
+  font-size: 2.5rem;
+  color: #10b981;
+  margin-bottom: 0.2rem;
+}
+.close-success-btn {
+  background: #10b981;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+}
+.close-success-btn:hover {
+  background: #059669;
+}
+@media (max-width: 480px) {
+  .success-popup-content {
+    min-width: 90vw;
+    padding: 1.2rem 0.5rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .device-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.2rem 1rem;
+    max-width: 98vw;
+  }
+  .device-actions {
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 1.2rem;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+}
